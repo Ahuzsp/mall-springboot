@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ums.mapper.AdminMapper">
+
+    <insert id="register" parameterType="com.ums.pojo.AdminUser"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_admin (
+            username, password, icon,
+            email, nick_name, note,
+            create_time, login_time, status
+        )
+        values (
+                   #{username}, #{password}, #{icon},
+                   #{email}, #{nickName}, #{note},
+                   #{createTime}, #{loginTime}, #{status}
+               )
+    </insert>
+
+    <select id="adminUserList" resultType="com.ums.pojo.AdminUser">
+        select * from ums_admin
+    </select>
+
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from ums_admin
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
