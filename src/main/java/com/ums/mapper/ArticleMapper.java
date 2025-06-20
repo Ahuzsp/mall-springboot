@@ -8,9 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface ArticleMapper {
-    @Select("select * from article")
-    List<Article> getArticleList();
+//    @Select("select * from article")
+//    List<Article> getArticleList();
 
     @Select("select * from article where articleId=#{articleId}")
     Article getArticleDetailById(Integer articleId);
+
+    List<Article> getArticleList(Integer category, Integer userId, String keyword);
 }

@@ -6,7 +6,7 @@ import com.ums.pojo.Clan;
 import java.util.List;
 
 public interface ArticleService {
-    List<Article> getArticleList();
+    List<Article> getArticleList(Integer category, Integer userId, String keyword);
 
     Article getArticleDetailById(Integer articleId);
 }

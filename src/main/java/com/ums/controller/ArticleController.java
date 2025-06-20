@@ -2,7 +2,6 @@ package com.ums.controller;
 
 import com.ums.common.CommonResult;
 import com.ums.pojo.Article;
-import com.ums.pojo.Clan;
 import com.ums.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +15,9 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/getArticleList")
-    public CommonResult<List<Article>> getArticleList() {
+    public CommonResult<List<Article>> getArticleList(@RequestParam(required = false) Integer category, @RequestParam(required = false) Integer userId, @RequestParam(required = false) String keyword) {
         try {
-            List<Article> articleList = articleService.getArticleList();
+            List<Article> articleList = articleService.getArticleList(category, userId, keyword);
             return CommonResult.success(articleList);
         } catch (Exception e) {
             return CommonResult.failed("获取文章失败: " + e.getMessage());
