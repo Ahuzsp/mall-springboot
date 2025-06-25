@@ -24,4 +24,39 @@
             </if>
         </where>
     </select>
+
+    <select id="getArticleListByIds" resultType="com.ums.pojo.Article">
+        select * from article where articleId in
+        <foreach collection="articleIds" item="articleId"  open="(" close=")" separator=",">
+            #{articleId}
+        </foreach>
+    </select>
+
+
+    <insert id="addArticle" useGeneratedKeys="true" keyProperty="articleId"
+            parameterType="com.ums.pojo.Article">
+        insert into article (userId, articleTitle, description, mdValue, category,
+          commentCount, readCount, likeCount, collectCount, cover, createTime, updateTime) values
+            (#{userId}, #{articleTitle}, #{description}, #{mdValue},
+             #{category}, #{commentCount}, #{readCount}, #{likeCount},
+             #{collectCount}, #{cover}, now(), now()
+            )
+    </insert>
+
+    <update id="updateArticle" parameterType="com.ums.pojo.Article">
+        update article
+        set userId = #{userId},
+        articleTitle = #{articleTitle},
+        description = #{description},
+        mdValue = #{mdValue},
+        category = #{category},
+        commentCount = #{commentCount},
+        readCount = #{readCount},
+        likeCount = #{likeCount},
+        collectCount = #{collectCount},
+        cover = #{cover},
+        createTime = #{createTime},
+        updateTime = now()
+        where articleId = #{articleId};
+    </update>
 </mapper>

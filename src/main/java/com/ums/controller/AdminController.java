@@ -40,7 +40,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public CommonResult<Object> delete(@PathVariable Long id) {
+    public CommonResult<Object> delete(@PathVariable Integer id) {
         try {
             adminService.deleteById(id);
             return CommonResult.success(null);
@@ -51,7 +51,7 @@ public class AdminController {
 
     // 批量删除
     @PostMapping("/deleteBatch")
-    public CommonResult<Object> deleteBatch(@RequestBody Map<String, List<Long>> idsmap) {
+    public CommonResult<Object> deleteBatch(@RequestBody Map<String, List<Integer>> idsmap) {
         try {
             adminService.deleteBatch(idsmap.get("ids"));
             return CommonResult.success(null);

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class AdminUser {
-    private Long id;
+    private Integer id;
     private String username;
     @JsonIgnore
     private String password;

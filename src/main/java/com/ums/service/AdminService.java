@@ -15,9 +15,9 @@ public interface AdminService {
 
     AdminUser findByName(String username);
 
-    void deleteById(Long id);
+    void deleteById(Integer id);
 
-    void deleteBatch(List<Long> ids);
+    void deleteBatch(List<Integer> ids);
 
-    void updateLoginTime(Long id);
+    void updateLoginTime(Integer id);
 }
